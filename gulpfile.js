@@ -18,29 +18,29 @@ gulp.task('default', ['copy'], function() {
 });
 
 gulp.task('copy', ['clean'], function() {
-    return gulp.assets('assets/**/*')
+    return gulp.src('src/**/*')
         .pipe(gulp.dest('dist'));
 });
 
 gulp.task('clean', function() {
-    return gulp.assets('dist')
+    return gulp.src('dist')
         .pipe(clean());
 });
 
 gulp.task('build-img', function() {
-  return gulp.assets('dist/img/**/*')
+  return gulp.src('dist/img/**/*')
     .pipe(imagemin())
     .pipe(gulp.dest('dist/img'));
 });
 
 gulp.task('build-less', function() {
-   return gulp.assets('assets/less/**/*.less')
+   return gulp.src('src/less/**/*.less')
       .pipe(less())
-      .pipe(gulp.dest('assets/css'));
+      .pipe(gulp.dest('src/css'));
 });
 
 gulp.task('usemin', function() {
-  return gulp.assets('dist/**/*.html')
+  return gulp.src('dist/**/*.html')
     .pipe(usemin({
       js: [uglify],
       css: [autoprefixer, cssmin]
@@ -51,33 +51,33 @@ gulp.task('usemin', function() {
 gulp.task('server', function() {
     browserSync.init({
         server: {
-            baseDir: 'assets'
+            baseDir: 'src'
         }
     });
 
-    gulp.watch('assets/**/*').on('change', browserSync.reload);
+    gulp.watch('src/**/*').on('change', browserSync.reload);
 
-    gulp.watch('assets/js/**/*.js').on('change', function(event) {
+    gulp.watch('src/js/**/*.js').on('change', function(event) {
         console.log("Linting " + event.path);
-        gulp.assets(event.path)
+        gulp.src(event.path)
             .pipe(jshint())
             .pipe(jshint.reporter(jshintStylish));
     });
 
-    gulp.watch('assets/css/**/*.css').on('change', function(event) {
+    gulp.watch('src/css/**/*.css').on('change', function(event) {
         console.log("Linting " + event.path);
-        gulp.assets(event.path)
+        gulp.src(event.path)
             .pipe(csslint())
             .pipe(csslint.reporter());
     }); 
 
-     gulp.watch('assets/less/**/*.less').on('change', function(event) {
-       var stream = gulp.assets(event.path)
+     gulp.watch('src/less/**/*.less').on('change', function(event) {
+       var stream = gulp.src(event.path)
             .pipe(less().on('error', function(erro) {
               console.log('LESS, erro compilação: ' + erro.filename);
               console.log(erro.message);
             }))
-            .pipe(gulp.dest('assets/css'));
+            .pipe(gulp.dest('src/css'));
     });
       
 });
