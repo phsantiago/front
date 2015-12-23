@@ -5,8 +5,19 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "gulp" : "gulp"
+    "gulp": "gulp"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gabrielfelixgomes/front.git"
+  },
+  "keywords": [
+    "front"
+  ],
+  "bugs": {
+    "url": "https://github.com/gabrielfelixgomes/front/issues"
+  },
+  "homepage": "https://github.com/gabrielfelixgomes/front#readme",
   "author": "Gabriel Felix Gomes",
   "license": "ISC",
   "devDependencies": {
