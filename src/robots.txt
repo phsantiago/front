@@ -1,7 +1,7 @@
 User-agent: *
 Disallow: /admin/
 
-Sitemap: http://arquibancadafc.net/sitemap/indice
+Sitemap: http://site.com
 
 
 
