@@ -18,3 +18,11 @@ Resources
 - Realtime
 - Clean
 
+
+Falta
+
+- GZIP
+- Sprites
+- Documentaçao
+- Testes
+- Deploy
