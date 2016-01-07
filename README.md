@@ -5,7 +5,7 @@
 
 Resources
 
-- Server
+- Server Local
 - Pre-processor CSS
 - Minify CSS
 - Minify JS

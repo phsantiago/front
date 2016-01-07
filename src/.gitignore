@@ -1,4 +1,20 @@
+# Dependency directory
+node_modules
+bower_components
+
+# Logs
+logs
+*.log
+
+# Other
+.DS_Store
+*/.DS_Store
 **/.DS_Store
-/system
-index.php
+
+.sass_cache
+.sass-cache
+
 error_log
+
+# Application
+dist
