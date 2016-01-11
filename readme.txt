@@ -5,6 +5,7 @@
 
 Resources
 
+- Server Local
 - Pre-processor CSS
 - Minify CSS
 - Minify JS
@@ -14,7 +15,6 @@ Resources
 - Check of syntax JS
 - Optimization IMG
 - Autoprefixer
-- Server Local
 - Realtime
 - Clean
 
