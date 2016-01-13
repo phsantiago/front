@@ -28,3 +28,7 @@ Falta
 - Testes
 - Deploy
 - sitemap
+- copiar arrumar
+- verificar atualizacoes
+- deixar ultima versao estavel
+- ver outros
