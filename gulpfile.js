@@ -45,16 +45,21 @@ gulp.task('usemin', function() {
   return gulp.src('dist/**/*.html')
     .pipe(usemin({
       js: [uglify],
-      css: [autoprefixer, cssmin]
+      css: [autoprefixer, less, cssmin]
     }))
     .pipe(gulp.dest('dist'));
 });
 
 gulp.task('server', function() {
     browserSync.init({
+        port: 8080,
         server: {
-            baseDir: 'src'
-        }
+          baseDir: './dist',
+        index: 'views/index.html'
+        },
+        browser: 'google-chrome',
+        notify: true,
+        reloadDelay: 1000
     });
 
     gulp.watch('src/**/*').on('change', browserSync.reload);
