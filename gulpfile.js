@@ -8,15 +8,14 @@ var gulp = require('gulp')
   ,uglify = require('gulp-uglify')
   ,usemin = require('gulp-usemin')
   ,cssmin = require('gulp-cssmin')
-  ,browserSync = require('browser-sync')
   ,jshint = require('gulp-jshint')
   ,jshintStylish = require('jshint-stylish')
   ,csslint = require('gulp-csslint')
   ,autoprefixer = require('gulp-autoprefixer')
-  ,less = require('gulp-less');
+  ,sass = require('gulp-sass');
 
-gulp.task('default', ['copy'], function() {
-    gulp.start('build-img', 'usemin');
+gulp.task('default', ['sass', 'copy'], function() {
+    gulp.start('img', 'usemin');
 });
 
 gulp.task('copy', ['clean'], function() {
@@ -29,62 +28,62 @@ gulp.task('clean', function() {
         .pipe(clean());
 });
 
-gulp.task('build-img', function() {
+gulp.task('img', function() {
   return gulp.src('dist/img/**/*')
     .pipe(imagemin())
     .pipe(gulp.dest('dist/img'));
 });
 
-gulp.task('build-less', function() {
-   return gulp.src('src/less/**/*.less')
-      .pipe(less())
-      .pipe(gulp.dest('src/css'));
+gulp.task('sass', function() {
+   return gulp.src('src/sass/**/*.scss')
+      .pipe(sass())
+      .pipe(gulp.dest('dist/css'));
 });
 
 gulp.task('usemin', function() {
   return gulp.src('dist/**/*.html')
     .pipe(usemin({
       js: [uglify],
-      css: [autoprefixer, less, cssmin]
+      css: [autoprefixer, cssmin]
     }))
     .pipe(gulp.dest('dist'));
 });
 
-gulp.task('server', function() {
+var browserSync = require('browser-sync').create();
+gulp.task('watch', function() {
     browserSync.init({
         port: 8080,
         server: {
           baseDir: './dist',
-        index: 'views/index.html'
+          index: 'views/index.html'
         },
         browser: 'google-chrome',
         notify: true,
         reloadDelay: 1000
     });
 
-    gulp.watch('src/**/*').on('change', browserSync.reload);
-
-    gulp.watch('src/js/**/*.js').on('change', function(event) {
+    gulp.watch('dist/js/**/*.js').on('change', function(event) {
         console.log("Linting " + event.path);
         gulp.src(event.path)
             .pipe(jshint())
             .pipe(jshint.reporter(jshintStylish));
     });
 
-    gulp.watch('src/css/**/*.css').on('change', function(event) {
+    gulp.watch('dist/css/**/*.css').on('change', function(event) {
         console.log("Linting " + event.path);
         gulp.src(event.path)
             .pipe(csslint())
             .pipe(csslint.reporter());
     }); 
 
-     gulp.watch('src/less/**/*.less').on('change', function(event) {
-       var stream = gulp.src(event.path)
-            .pipe(less().on('error', function(erro) {
-              console.log('LESS, erro compilação: ' + erro.filename);
+    gulp.watch('src/sass/**/*.scss').on('change', function(event) {
+       gulp.src('src/sass/**/*.scss')
+          .pipe(sass().on('error', function(erro) {
+              console.log('SASS, erro compilação: ' + erro.filename);
               console.log(erro.message);
             }))
-            .pipe(gulp.dest('src/css'));
+          .pipe(gulp.dest('dist/css'));
     });
-      
+
+    gulp.watch("./src/**/*.*").on('change', browserSync.reload);
 });

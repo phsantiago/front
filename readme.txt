@@ -35,9 +35,9 @@ Falta
 - ver outros
 
 - definir media
-$xs-only: ≤ 767px
-$sm: ≥ 768px
-$sm-only: ≥ 768px e ≤ 991px
-$md: ≥ 992px
-$md-only: ≥ 992px e ≤ 1229px
-$lg: ≥ 1230px
+	$xs-only: ≤ 767px
+	$sm: ≥ 768px
+	$sm-only: ≥ 768px e ≤ 991px
+	$md: ≥ 992px
+	$md-only: ≥ 992px e ≤ 1229px
+	$lg: ≥ 1230px
