@@ -1,7 +1,10 @@
-@import 'reset';
-@import 'fonts';
+@import 'core/reset';
+@import 'core/variables';
+@import 'core/fonts';
+@import 'core/base';
+@import 'core/colors';
 
-@import 'geral';
+
 @import 'header';
 @import 'footer';
 
