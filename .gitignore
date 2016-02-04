@@ -15,5 +15,5 @@ logs
 **/.DS_Store
 .sass_cache
 .sass-cache
+.ftpquota
 error_log
-
