@@ -21,7 +21,7 @@ gulp.task('default', ['del'], function() {
 });
 
 var browserSync = require('browser-sync').create();
-gulp.task('watch', ['sass', 'images', 'html', 'usemin'], function(){
+gulp.task('watch', ['sass', 'images', 'html'], function(){
    browserSync.init({
         port: 8080,
         server: {
@@ -61,19 +61,6 @@ gulp.task('images', function() {
 gulp.task('html', function(){
    gulp.src('./src/**/*.html', { base: './src/' })
       .pipe(gulp.dest('./dist'))
-});
-
-
-gulp.task('usemin', function() {
-  return gulp.src('dist/**/*.html')
-    .pipe(usemin())
-    .pipe(gulp.dest('./dist'));
-});
-
-gulp.task('minify-css', function() {
-  return gulp.src('./dist/css/**/*.css')
-    .pipe(cleanCSS({compatibility: 'ie8'}))
-    .pipe(gulp.dest('dist'));
 });
 
 
