@@ -5,6 +5,7 @@ var gulp = require('gulp')
   ,imagemin = require('gulp-imagemin')
   ,del = require('del')
   ,autoprefixer = require('gulp-autoprefixer')
+  ,cleanCSS = require('gulp-clean-css')
 
   ,concat = require('gulp-concat')
   ,uglify = require('gulp-uglify')
@@ -64,11 +65,10 @@ gulp.task('html', function(){
       .pipe(gulp.dest('./dist'))
 });
 
-gulp.task('css', function(){
-  gulp.src('dist/css/**/*.css')
-    .pipe(minifyCSS())
-    .pipe(concat('style.min.css'))
-    .pipe(gulp.dest('dist/css'))
+gulp.task('css', function() {
+  gulp.src('dist/css/*.css')
+    .pipe(cleanCSS({compatibility: 'ie8'}))
+    .pipe(gulp.dest('dist/css'));
 });
 
 
