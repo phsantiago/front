@@ -23,6 +23,10 @@
   "dependencies": {
     "jquery": "~2.2.0",
     "jquery-ui": "~1.11.4",
-    "angular": "~1.4.8"
+    "angular": "~1.4.8",
+    "bootstrap": "^3.3.6"
+  },
+  "devDependencies": {
+    "bootstrap": "^3.3.6"
   }
 }
